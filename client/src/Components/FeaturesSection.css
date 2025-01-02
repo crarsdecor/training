@@ -1,0 +1,36 @@
+/* FeaturesSection.css */
+
+.features-section {
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .features-section h2 {
+    margin-top: -2rem;
+    font-size: 2em;
+    font-weight: bold;
+    color: #1890ff;
+    margin-bottom: 30px;
+  }
+  
+  .feature-card {
+    border: 1px solid #e8e8e8; /* Subtle border around cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white; /* White background for cards */
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow on hover */
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .feature-card {
+      margin-bottom: 20px; /* Space between cards on smaller screens */
+    }
+  }
+  

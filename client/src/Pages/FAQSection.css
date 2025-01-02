@@ -1,0 +1,73 @@
+/* Main FAQ Section Styling */
+.faq-section {
+  padding: 60px;
+  background-color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+/* Collapse Panel Styling */
+.faq-collapse .ant-collapse-item {
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-collapse .ant-collapse-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Collapse Header Styling */
+.faq-collapse .ant-collapse-header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: #ffffff !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.faq-collapse .ant-collapse-header:hover {
+  background: linear-gradient(135deg, #0056b3, #003d82);
+}
+
+/* Collapse Content Styling */
+.faq-collapse .ant-collapse-content {
+  background-color: #ffffff;
+}
+
+.faq-collapse .ant-collapse-content p {
+  padding: 20px;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Animation for Panel Expansion */
+.faq-collapse .ant-collapse-content-box {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

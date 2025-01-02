@@ -1,0 +1,47 @@
+const express = require("express");
+const router = express.Router();
+const createNewTicket = require("../controller/createNewTicket");
+const getAllUserTicket = require("../controller/getAllUserTicket");
+const getSpecificTicket = require("../controller/getSpecificTicket");
+const addCommnetToTicket = require("../controller/addCommnetToTicket");
+const newAppointment = require("../controller/newAppointment");
+const getAllUserAppointment = require("../controller/getAllUserAppointment");
+const addAppointmentReview = require("../controller/addAppointmentReview");
+const getUserDetails = require("../controller/getUserDetails");
+const getAllManagers = require("../controller/getAllManagers");
+const { route } = require("./LoginRoute");
+const getAmazonCourse = require("../controller/getAmazonCourse");
+const getWebsiteCourse = require("../controller/getWebsiteCourse");
+const getAmazonCourseVideo = require("../controller/getAmazonCourseVideo");
+const getAmazonAdvance = require("../controller/getAmazonAdvance");
+const getAmazonIntermediate = require("../controller/getAmazonIntermediate");
+const getAmazonBegginerVideo = require("../controller/getAmazonBegginerVideo");
+const getWebsiteBegginer = require("../controller/getWebsiteBegginer");
+const getWebsiteIntermediate = require("../controller/getWebsiteIntermediate");
+const getWebsiteAdvance = require("../controller/getWebsiteAdvance");
+const markComplete = require("../controller/markComplete");
+const getWebsiteCourseVideo = require("../controller/getWebsiteCourseVideo");
+
+// Route for login
+router.get("/getallmanager", getAllManagers);
+router.post("/newticket", createNewTicket);
+router.get("/getalltickets", getAllUserTicket);
+router.get("/getticketdetails", getSpecificTicket);
+router.get("/getAmazon", getAmazonCourse);
+router.get("/getWebsite", getWebsiteCourse);
+router.get("/getAmazonVideo", getAmazonCourseVideo);
+router.get("/getWebsiteVideo", getWebsiteCourseVideo);
+router.get("/getAmazonCourseAdvanceVideos", getAmazonAdvance);
+router.get("/getAmazonCourseIntermediateVideos", getAmazonIntermediate);
+router.get("/getAmazonCourseBegginerVideos", getAmazonBegginerVideo);
+router.get("/getWebsiteCourseBegginerVideos", getWebsiteBegginer);
+router.get("/getWebsiteCourseIntermediateVideos", getWebsiteIntermediate);
+router.get("/getWebsiteCourseAdvanceVideos", getWebsiteAdvance);
+router.post("/markVideoComplete",markComplete);
+router.post("/commenttoticket", addCommnetToTicket);
+router.post("/bookappointment", newAppointment);
+router.get("/getallappointments", getAllUserAppointment);
+router.post("/submitreview", addAppointmentReview);
+router.get("/:uid", getUserDetails);
+
+module.exports = router;
