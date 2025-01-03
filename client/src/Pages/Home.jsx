@@ -71,14 +71,14 @@ const Home = () => {
             Welcome to Our Premium LMS
           </h1>
 
-          <p className="text-base text-black-900 mb-6">
-            Welcome to the Crarts Decor Support Portal! Designed to streamline
-            your experience, our portal empowers users to raise tickets for any
-            concerns or queries and book appointments with their designated
-            managers effortlessly. Whether you need assistance with Amazon
-            product listings or e-commerce website development, our dedicated
-            team is here to provide you with personalized support and ensure
-            your projects stay on track.
+          <p className="text-base text-black-900 mb-6 pr-8">
+            Designed to empower your learning journey, our platform offers
+            comprehensive training on Amazon account management, product
+            listings, ads, and more. Dive into web creation using WordPress and
+            master SEO techniques to elevate your online presence. Whether
+            you're an aspiring entrepreneur or an established seller, our
+            dedicated courses provide personalized insights to help you thrive
+            in the digital world. Start your transformation today!
           </p>
           <Button
             onClick={handleAppointmentClick}

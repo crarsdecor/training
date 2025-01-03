@@ -11,9 +11,9 @@ const OnlineJourney = () => {
         </h1>
       </div>{" "}
       {/* Video Container */}
-      <div className="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
+      <div className="flex justify-center space-x-4 overflow-x-auto pb-4 scrollbar-hide">
         {/* Video 1 */}
-        <div className="flex-none w-56 shadow-lg rounded-b-lg">
+        <div className="flex-none w-56 shadow-lg rounded-b-lg border-2 border-grey-500">
           <video
             src="/content.mp4"
             className="w-full h-398"
@@ -41,7 +41,7 @@ const OnlineJourney = () => {
         </div>
 
         {/* Video 3 */}
-        <div className="flex-none w-56 shadow-lg rounded-b-lg">
+        <div className="flex-none w-56 shadow-lg rounded-b-lg border-2 border-grey-500">
           <video
             src="/accountCC.mp4"
             className="w-full h-398"
@@ -59,7 +59,7 @@ const OnlineJourney = () => {
         </div>
 
         {/* Video 4 */}
-        <div className="flex-none w-56 shadow-lg rounded-b-lg">
+        <div className="flex-none w-56 shadow-lg rounded-b-lg border-2 border-grey-500">
           <video
             src="/support.mp4"
             className="w-full h-398"
@@ -87,7 +87,7 @@ const OnlineJourney = () => {
         </div>
 
         {/* Video 5 */}
-        <div className="flex-none w-56 shadow-lg rounded-b-lg">
+        <div className="flex-none w-56 shadow-lg rounded-b-lg border-2 border-grey-500">
           <video
             src="/content 2.mp4"
             className="w-full h-398"
@@ -113,7 +113,7 @@ const OnlineJourney = () => {
             demonstrations to teach specific behaviors effectively.
           </p>
         </div>
-        <div className="flex-none w-56 shadow-lg rounded-b-lg">
+        <div className="flex-none w-56 shadow-lg rounded-b-lg border-2 border-grey-500">
           <video
             src="/learning.mp4"
             className="w-full h-398"
