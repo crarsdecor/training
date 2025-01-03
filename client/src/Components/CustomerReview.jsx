@@ -145,9 +145,6 @@ const CustomerReview = () => {
 
           {/* Join Now Button */}
           <div className="text-center mt-6">
-            <h1 className="text-2xl font-bold text-center mb-6 text-blue-500">
-              ALL ELEMENTS ARE REQUIRED FOR GROWTH
-            </h1>
             <Button
               onClick={() => {
                 const phoneNumber = "7300054369";
