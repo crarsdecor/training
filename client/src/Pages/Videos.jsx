@@ -18,8 +18,10 @@ const Videos = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [videos, setVideos] = useState([]);
+  const [filteredVideos, setFilteredVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingVideo, setEditingVideo] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Fetch all videos
   const fetchVideos = async () => {
@@ -37,7 +39,9 @@ const Videos = () => {
         },
       });
 
-      setVideos(response.data.videos || []);
+      const fetchedVideos = response.data.videos || [];
+      setVideos(fetchedVideos);
+      setFilteredVideos(fetchedVideos);
     } catch (error) {
       message.error("Failed to fetch videos. Please try again.");
     } finally {
@@ -48,6 +52,16 @@ const Videos = () => {
   useEffect(() => {
     fetchVideos();
   }, []);
+
+  // Handle search
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    const filtered = videos.filter((video) =>
+      video.title.toLowerCase().includes(query)
+    );
+    setFilteredVideos(filtered);
+  };
 
   // Show modal for adding or editing
   const showModal = (video = null) => {
@@ -191,16 +205,24 @@ const Videos = () => {
       <div className="p-4">
         <div className="w-full mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
           <h1 className="text-2xl pt-4 font-bold text-white">
-            All Course Videos .
+            All Course Videos.
           </h1>
         </div>
-        <Button
-          type="primary"
-          onClick={() => showModal()}
-          className="mb-4 bg-gradient-to-r from-blue-800 to-blue-400 text-white"
-        >
-          Add Video
-        </Button>
+        <div className="flex">
+          <Input
+            placeholder="Search by title"
+            value={searchQuery}
+            onChange={handleSearch}
+            className="mb-4 w-64 mr-8"
+          />
+          <Button
+            type="primary"
+            onClick={() => showModal()}
+            className="mb-4 bg-gradient-to-r from-blue-800 to-blue-400 text-white"
+          >
+            Add Video
+          </Button>
+        </div>
 
         <Modal
           title={editingVideo ? "Edit Video" : "Add New Video"}
@@ -281,7 +303,7 @@ const Videos = () => {
         </Modal>
 
         <Table
-          dataSource={videos}
+          dataSource={filteredVideos}
           columns={columns}
           loading={loading}
           rowKey="_id"
