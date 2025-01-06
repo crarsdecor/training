@@ -17,32 +17,27 @@ const Features = () => {
   const topics = [
     {
       title: "Exclusive Topics",
-      videoLink:
-        "https://drive.google.com/file/d/1k3qshqy7FE0Rrm1KRN39BSkqYgCmgTx9/preview",
+      videoLink: "/exclusivetopic.mp4",
       icon: <TopicIcon />,
     },
     {
       title: "Short Trainings",
-      videoLink:
-        "https://drive.google.com/file/d/1k3qshqy7FE0Rrm1KRN39BSkqYgCmgTx9/preview",
+      videoLink: "/shortTraining.mp4",
       icon: <ShortTrainingIcon />,
     },
     {
       title: "Regular Updates",
-      videoLink:
-        "https://drive.google.com/file/d/1k3qshqy7FE0Rrm1KRN39BSkqYgCmgTx9/preview",
+      videoLink: "/regularUpdates.mp4",
       icon: <UpdateIcon />,
     },
     {
       title: "IMFW",
-      videoLink:
-        "https://drive.google.com/file/d/1k3qshqy7FE0Rrm1KRN39BSkqYgCmgTx9/preview",
+      videoLink: "/imfw.mp4",
       icon: <ImfwIcon />,
     },
     {
       title: "Social Media Content",
-      videoLink:
-        "https://drive.google.com/file/d/1k3qshqy7FE0Rrm1KRN39BSkqYgCmgTx9/preview",
+      videoLink: "/socialMediaContert.mp4",
       icon: <SocialMediaIcon />,
     },
   ];
