@@ -21,6 +21,7 @@ const getWebsiteIntermediate = require("../controller/getWebsiteIntermediate");
 const getWebsiteAdvance = require("../controller/getWebsiteAdvance");
 const markComplete = require("../controller/markComplete");
 const getWebsiteCourseVideo = require("../controller/getWebsiteCourseVideo");
+const addReview = require("../controller/addReview");
 
 // Route for login
 router.get("/getallmanager", getAllManagers);
@@ -37,6 +38,7 @@ router.get("/getAmazonCourseBegginerVideos", getAmazonBegginerVideo);
 router.get("/getWebsiteCourseBegginerVideos", getWebsiteBegginer);
 router.get("/getWebsiteCourseIntermediateVideos", getWebsiteIntermediate);
 router.get("/getWebsiteCourseAdvanceVideos", getWebsiteAdvance);
+router.post("/add-review",addReview);
 router.post("/markVideoComplete",markComplete);
 router.post("/commenttoticket", addCommnetToTicket);
 router.post("/bookappointment", newAppointment);

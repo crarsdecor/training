@@ -4,9 +4,12 @@ import {
   Typography,
   message,
   Card,
+  Modal,
+  Rate,
   Row,
   Col,
   Progress,
+  Input,
   Button,
   Collapse,
 } from "antd";
@@ -16,6 +19,7 @@ import UserLayout from "../Layouts/UserLayout";
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 const { Text, Title } = Typography;
 const { Panel } = Collapse;
+const { TextArea } = Input;
 
 const WebsiteCourse = () => {
   const [website, setWebsite] = useState(null);
@@ -23,11 +27,18 @@ const WebsiteCourse = () => {
   const [begginer, setBegginer] = useState([]);
   const [intermediate, setIntermediate] = useState([]);
   const [websiteVideo, setWebsiteVideo] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [advance, setAdvance] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null); // State for selected video
   const [viewMode, setViewMode] = useState(false); // State for changing layout
   const [completedVideos, setCompletedVideos] = useState([]); // To track completed videos
+  const [reviewData, setReviewData] = useState({
+    rating: 0,
+    userName: localStorage.getItem("name"),
+    message: "",
+    courseName: "Website",
+  });
 
   const fetchWebsite = async () => {
     try {
@@ -257,6 +268,33 @@ const WebsiteCourse = () => {
       setViewMode(true);
     }
   }, []);
+
+  const handleSubmitReview = async () => {
+    if (!reviewData.rating || !reviewData.message.trim()) {
+      message.error("Please provide a rating and a message.");
+      return;
+    }
+    console.log(reviewData);
+
+    try {
+      // Replace with your backend API endpoint
+      const response = await axios.post(
+        `${backendUrl}/user/add-review`,
+        reviewData
+      );
+
+      if (response.status === 200) {
+        message.success("Review submitted successfully!");
+        setIsModalVisible(false);
+        setReviewData({ rating: 0, message: "" });
+      } else {
+        message.error("Failed to submit review. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      message.error("An error occurred. Please try again later.");
+    }
+  };
 
   const handleSelectVideo = (video) => {
     // Save the selected video in localStorage
@@ -574,7 +612,57 @@ const WebsiteCourse = () => {
             ) : (
               <Text type="secondary">Select a video to play</Text>
             )}
+            <Button
+              type="primary"
+              className="mt-8 absolute mr-8"
+              onClick={() => setIsModalVisible(true)}
+            >
+              Rate Course
+            </Button>
           </div>
+          <Modal
+            title="Submit Review"
+            visible={isModalVisible}
+            onCancel={() => setIsModalVisible(false)}
+            footer={[
+              <Button key="cancel" onClick={() => setIsModalVisible(false)}>
+                Cancel
+              </Button>,
+              <Button
+                key="submit"
+                type="primary"
+                onClick={handleSubmitReview}
+                disabled={!reviewData.rating || !reviewData.message.trim()}
+              >
+                Submit
+              </Button>,
+            ]}
+          >
+            <div className="space-y-4">
+              <div>
+                <label className="block font-semibold">Rating</label>
+                <Rate
+                  value={reviewData.rating}
+                  onChange={(value) =>
+                    setReviewData((prev) => ({ ...prev, rating: value }))
+                  }
+                />
+              </div>
+              <div>
+                <label className="block font-semibold">Message</label>
+                <TextArea
+                  rows={4}
+                  value={reviewData.message}
+                  onChange={(e) =>
+                    setReviewData((prev) => ({
+                      ...prev,
+                      message: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+            </div>
+          </Modal>
         </div>
       )}
     </UserLayout>
