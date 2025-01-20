@@ -11,11 +11,7 @@ const Footer = () => {
   return (
     <footer className="w-full text-black shadow-md px-4 py-6 lg:px-8 lg:py-6 flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
       <div className="flex items-center justify-center lg:justify-start">
-        <img
-          src="https://support.saumiccraft.com/wp-content/uploads/2023/05/logo-saumic-new.png"
-          alt="Logo"
-          className="h-12 w-auto"
-        />
+        <img src="/logo2.png" alt="Logo" className="h-12 w-auto" />
       </div>
       <div className="flex items-center justify-center space-x-4">
         <a
