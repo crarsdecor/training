@@ -32,6 +32,7 @@ const UserDash = () => {
   const [error, setError] = useState(null);
   const amazonId = localStorage.getItem("enrollmentIdAmazon");
   const websiteId = localStorage.getItem("enrollmentIdWebsite");
+  const enrollmentIdWebsite = localStorage.getItem("enrollmentIdWebsite");
 
   useEffect(() => {
     const uid = localStorage.getItem("uid");
@@ -239,86 +240,106 @@ const UserDash = () => {
           {/* Amazon Courses Section */}
           {amazon &&
             amazon.length > 0 &&
-            amazon.map((course) => (
-              <Col
-                onClick={handleAmazonClick}
-                key={course._id}
-                xs={24}
-                sm={12}
-                lg={8}
-                xl={6}
-              >
-                <Card
-                  hoverable
-                  cover={<img alt={course.title} src={course.image} />}
-                  data-aos="fade-up"
-                  className="bg-white shadow-lg h-full"
-                >
-                  <Card.Meta
-                    title={course.title}
-                    description={<Text>{course.description}</Text>}
-                  />
-                  <div className="mt-4 text-sm text-gray-500">
-                    <ul className="list-disc pl-5">
-                      <li>{course.bullet1}</li>
-                      <li>{course.bullet2}</li>
-                      <li>{course.bullet3}</li>
-                      <li>{course.bullet4}</li>
-                    </ul>
-                  </div>
-                  {/* Progress Bar */}
-                  <div className="mt-4">
-                    <Progress
-                      percent={calculateAmazonProgress(course)}
-                      size="small"
-                      status="active"
-                    />
-                  </div>
-                </Card>
-              </Col>
-            ))}
+            amazon.map(
+              (course) =>
+                amazonId &&
+                amazonId !== "undefined" && (
+                  <Col
+                    onClick={handleAmazonClick}
+                    key={course._id}
+                    xs={24}
+                    sm={12}
+                    lg={8}
+                    xl={6}
+                  >
+                    <Card
+                      hoverable
+                      cover={
+                        <img
+                          className="px-2"
+                          alt={course.title}
+                          src={course.image}
+                        />
+                      }
+                      data-aos="fade-up"
+                      className="bg-white shadow-lg h-full"
+                    >
+                      <Card.Meta
+                        title={course.title}
+                        description={<Text>{course.description}</Text>}
+                      />
+                      <div className="mt-4 text-sm text-gray-500">
+                        <ul className="list-disc pl-5">
+                          <li>{course.bullet1}</li>
+                          <li>{course.bullet2}</li>
+                          <li>{course.bullet3}</li>
+                          <li>{course.bullet4}</li>
+                        </ul>
+                      </div>
+                      {/* Progress Bar */}
+                      <div className="mt-4">
+                        <Progress
+                          percent={calculateAmazonProgress(course)}
+                          size="small"
+                          status="active"
+                        />
+                      </div>
+                    </Card>
+                  </Col>
+                )
+            )}
 
           {/* Website Courses Section */}
           {website &&
             website.length > 0 &&
-            website.map((course) => (
-              <Col
-                onClick={handleWebsiteClick}
-                key={course._id}
-                xs={24}
-                sm={12}
-                lg={8}
-                xl={6}
-              >
-                <Card
-                  hoverable
-                  cover={<img alt={course.title} src={course.image} />}
-                  data-aos="fade-up"
-                  className="bg-white shadow-lg h-full"
-                >
-                  <Card.Meta
-                    title={course.title}
-                    description={<Text>{course.description}</Text>}
-                  />
-                  <div className="mt-4 text-sm text-gray-500">
-                    <ul className="list-disc pl-5">
-                      <li>{course.bullet1}</li>
-                      <li>{course.bullet2}</li>
-                      <li>{course.bullet3}</li>
-                      <li>{course.bullet4}</li>
-                    </ul>
-                  </div>
-                  {/* Progress Bar */}
-                  <div className="mt-4">
-                    <Progress
-                      percent={calculateWebsiteProgress(course)}
-                      size="small"
-                      status="active"
-                    />
-                  </div>
-                </Card>
-              </Col>
-            ))}
+            website.map(
+              (course) =>
+                websiteId &&
+                websiteId !== "undefined" && (
+                  <Col
+                    onClick={handleWebsiteClick}
+                    key={course._id}
+                    xs={24}
+                    sm={12}
+                    lg={8}
+                    xl={6}
+                  >
+                    <Card
+                      hoverable
+                      cover={
+                        <img
+                          className="px-2"
+                          alt={course.title}
+                          src={course.image}
+                        />
+                      }
+                      data-aos="fade-up"
+                      className="bg-white shadow-lg h-full"
+                    >
+                      <Card.Meta
+                        title={course.title}
+                        description={<Text>{course.description}</Text>}
+                      />
+                      <div className="mt-4 text-sm text-gray-500">
+                        <ul className="list-disc pl-5">
+                          <li>{course.bullet1}</li>
+                          <li>{course.bullet2}</li>
+                          <li>{course.bullet3}</li>
+                          <li>{course.bullet4}</li>
+                        </ul>
+                      </div>
+                      {/* Progress Bar */}
+                      <div className="mt-4">
+                        <Progress
+                          percent={calculateWebsiteProgress(course)}
+                          size="small"
+                          status="active"
+                        />
+                      </div>
+                    </Card>
+                  </Col>
+                )
+            )}
         </Row>
       </div>
     </UserLayout>

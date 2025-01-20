@@ -5,6 +5,7 @@ const authService = require("../services/login");
 module.exports = async (req, res) => {
   try {
     const { uid, password } = req.body;
+    console.log(req.body);
     const user = await User.findOne({ uid });
     if (!user) {
       return res.status(404).json({ message: "User not exists!" });
