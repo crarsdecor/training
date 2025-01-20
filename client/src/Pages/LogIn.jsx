@@ -81,11 +81,7 @@ const LogIn = () => {
       >
         {/* Logo */}
         <div className="text-center mb-6">
-          <img
-            src="https://support.saumiccraft.com/wp-content/uploads/2023/05/logo-saumic-new.png"
-            alt="Logo"
-            className="h-14 mx-auto mb-1"
-          />
+          <img src="/logo2.png" alt="Logo" className="h-14 mx-auto mb-1" />
           <h2
             className="text-3xl font-bold mb-1"
             style={{

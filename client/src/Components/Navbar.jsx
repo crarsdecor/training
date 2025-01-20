@@ -57,7 +57,7 @@ const Navbar = ({ toggleSidebar }) => {
         )}
         {/* Logo */}
         <img
-          src="https://support.saumiccraft.com/wp-content/uploads/2023/05/logo-saumic-new.png"
+          src="/logo2.png"
           alt="Logo"
           className="h-14 w-auto hover:cursor-pointer"
           onClick={handleLogoClick}
