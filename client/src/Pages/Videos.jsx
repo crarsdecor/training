@@ -22,6 +22,8 @@ const Videos = () => {
   const [loading, setLoading] = useState(false);
   const [editingVideo, setEditingVideo] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
 
   // Fetch all videos
   const fetchVideos = async () => {
@@ -57,9 +59,39 @@ const Videos = () => {
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-    const filtered = videos.filter((video) =>
-      video.title.toLowerCase().includes(query)
-    );
+    filterVideos(query, categoryFilter, typeFilter);
+  };
+
+  // Handle category filter
+  const handleCategoryFilter = (value) => {
+    setCategoryFilter(value);
+    filterVideos(searchQuery, value, typeFilter);
+  };
+
+  // Handle type filter
+  const handleTypeFilter = (value) => {
+    setTypeFilter(value);
+    filterVideos(searchQuery, categoryFilter, value);
+  };
+
+  // Filter videos based on search, category, and type
+  const filterVideos = (query, category, type) => {
+    let filtered = videos;
+
+    if (query) {
+      filtered = filtered.filter((video) =>
+        video.title.toLowerCase().includes(query)
+      );
+    }
+
+    if (category) {
+      filtered = filtered.filter((video) => video.courseCategory === category);
+    }
+
+    if (type) {
+      filtered = filtered.filter((video) => video.courseType === type);
+    }
+
     setFilteredVideos(filtered);
   };
 
@@ -205,20 +237,39 @@ const Videos = () => {
       <div className="p-4">
         <div className="w-full mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
           <h1 className="text-2xl pt-4 font-bold text-white">
-            All Course Videos.
+            All Course Videos
           </h1>
         </div>
-        <div className="flex">
+        <div className="flex gap-4 items-center mb-4">
           <Input
             placeholder="Search by title"
             value={searchQuery}
             onChange={handleSearch}
-            className="mb-4 w-64 mr-8"
+            className="w-64"
           />
+          <Select
+            placeholder="Filter by Category"
+            value={categoryFilter}
+            onChange={handleCategoryFilter}
+            className="w-64"
+          >
+            <Select.Option value="Amazon">Amazon</Select.Option>
+            <Select.Option value="Website">Website</Select.Option>
+          </Select>
+          <Select
+            placeholder="Filter by Type"
+            value={typeFilter}
+            onChange={handleTypeFilter}
+            className="w-64"
+          >
+            <Select.Option value="Beginner">Beginner</Select.Option>
+            <Select.Option value="Intermediate">Intermediate</Select.Option>
+            <Select.Option value="Advanced">Advanced</Select.Option>
+          </Select>
           <Button
             type="primary"
             onClick={() => showModal()}
-            className="mb-4 bg-gradient-to-r from-blue-800 to-blue-400 text-white"
+            className="bg-gradient-to-r from-blue-800 to-blue-400 text-white"
           >
             Add Video
           </Button>
@@ -308,7 +359,7 @@ const Videos = () => {
           loading={loading}
           rowKey="_id"
           bordered
-          pagination={{ pageSize: 5 }}
+          pagination={{ pageSize: 10 }}
         />
       </div>
     </AdminLayout>

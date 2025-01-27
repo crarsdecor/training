@@ -12,6 +12,7 @@ const SevFivVideos = () => {
   const [form] = Form.useForm();
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [filterText, setFilterText] = useState("");
 
   // Fetch all videos
   const fetchVideos = async () => {
@@ -123,6 +124,16 @@ const SevFivVideos = () => {
     }
   };
 
+  // Filter videos by title
+  const filterByTitle = (searchTerm) => {
+    return videos.filter((video) =>
+      video.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  // Videos to display based on filter
+  const displayedVideos = filterText ? filterByTitle(filterText) : videos;
+
   // Table columns
   const columns = [
     {
@@ -187,14 +198,24 @@ const SevFivVideos = () => {
             All Videos of 75 Day's Training.
           </h1>
         </div>
-        {/* Button to add a new video */}
-        <Button
-          type="primary"
-          onClick={() => showModal()}
-          className="mb-4 bg-gradient-to-r from-blue-800 to-blue-400 text-white"
-        >
-          Add Video
-        </Button>
+
+        {/* Search Bar for Title Filter */}
+        <div className="mb-4 flex justify-between items-center">
+          <Button
+            type="primary"
+            onClick={() => showModal()}
+            className="bg-gradient-to-r from-blue-800 to-blue-400 text-white"
+          >
+            Add Video
+          </Button>
+
+          <Input
+            placeholder="Search by title"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+            className="w-1/3"
+          />
+        </div>
 
         {/* Modal for adding or editing video */}
         <Modal
@@ -247,7 +268,7 @@ const SevFivVideos = () => {
 
         {/* Table for displaying videos */}
         <Table
-          dataSource={videos}
+          dataSource={displayedVideos}
           columns={columns}
           loading={loading}
           rowKey="_id"
