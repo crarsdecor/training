@@ -24,6 +24,11 @@ import VideoPlayerPage from "./Pages/VideoPlayerPage";
 import Imfw from "./Pages/Imfw";
 import Artists from "./Pages/Artists";
 import HowWeWork from "./Pages/HowWeWork";
+import Themes from "./Pages/Themes";
+import Banner from "./Pages/Banner";
+import ProductImage from "./Pages/ProductImage";
+import ProductVideos from "./Pages/ProductVideos";
+import Manufacturing from "./Pages/Manufacturing";
 function App() {
   return (
     <>
@@ -45,6 +50,11 @@ function App() {
             <Route path="/regular-update" exact element={<RegularUpdate />} />
             <Route path="/75daystraining" exact element={<SevFivTraining />} />
             <Route path="/live-training" exact element={<LiveTraining />} />
+            <Route path="/themes" exact element={<Themes />} />
+            <Route path="/banner" exact element={<Banner />} />
+            <Route path="/product-images" exact element={<ProductImage />} />
+            <Route path="/product-videos" exact element={<ProductVideos />} />
+            <Route path="/manufacturing" exact element={<Manufacturing />} />
             <Route
               path="/social-media-content"
               exact
