@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../Layouts/AdminLayout";
-import { Button, Modal, Form, Input, message, Table, Popconfirm } from "antd";
+import {
+  Button,
+  Modal,
+  Form,
+  Input,
+  message,
+  Table,
+  Popconfirm,
+  Select,
+} from "antd";
 import axios from "axios";
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
@@ -13,6 +22,7 @@ const SevFivVideos = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filterText, setFilterText] = useState("");
+  const [filterCategory, setFilterCategory] = useState(""); // New state for course category filter
 
   // Fetch all videos
   const fetchVideos = async () => {
@@ -65,6 +75,7 @@ const SevFivVideos = () => {
 
   // Handle form submission for adding or editing
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -124,15 +135,21 @@ const SevFivVideos = () => {
     }
   };
 
-  // Filter videos by title
-  const filterByTitle = (searchTerm) => {
-    return videos.filter((video) =>
-      video.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  // Filter videos by title and courseCategory
+  const filterVideos = () => {
+    return videos.filter((video) => {
+      const matchesTitle = video.title
+        .toLowerCase()
+        .includes(filterText.toLowerCase());
+      const matchesCategory = filterCategory
+        ? video.courseCategory === filterCategory
+        : true;
+      return matchesTitle && matchesCategory;
+    });
   };
 
   // Videos to display based on filter
-  const displayedVideos = filterText ? filterByTitle(filterText) : videos;
+  const displayedVideos = filterVideos();
 
   // Table columns
   const columns = [
@@ -141,6 +158,11 @@ const SevFivVideos = () => {
       dataIndex: "videoId",
       key: "videoId",
       align: "center",
+    },
+    {
+      title: "Course Category",
+      dataIndex: "courseCategory",
+      key: "courseCategory",
     },
     {
       title: "Title",
@@ -193,20 +215,23 @@ const SevFivVideos = () => {
   return (
     <AdminLayout>
       <div className="p-4">
-        <div className="w-full mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
+        <div className="w-full flex justify-between mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
           <h1 className="text-2xl pt-4 font-bold text-white">
             All Videos of 75 Day's Training.
           </h1>
+          <h1 className="text-2xl pt-4 font-bold text-white">
+            Total: {displayedVideos.length}
+          </h1>
         </div>
 
-        {/* Search Bar for Title Filter */}
+        {/* Search Bar for Title Filter and Category Filter */}
         <div className="mb-4 flex justify-between items-center">
           <Button
             type="primary"
             onClick={() => showModal()}
             className="bg-gradient-to-r from-blue-800 to-blue-400 text-white"
           >
-            Add Video
+            Add New Video
           </Button>
 
           <Input
@@ -215,6 +240,18 @@ const SevFivVideos = () => {
             onChange={(e) => setFilterText(e.target.value)}
             className="w-1/3"
           />
+
+          {/* Filter by Category */}
+          <Select
+            placeholder="Select category"
+            value={filterCategory}
+            onChange={(value) => setFilterCategory(value)}
+            style={{ width: 200 }}
+          >
+            <Select.Option value="">All Categories</Select.Option>
+            <Select.Option value="Amazon">Amazon</Select.Option>
+            <Select.Option value="Website">Website</Select.Option>
+          </Select>
         </div>
 
         {/* Modal for adding or editing video */}
@@ -232,6 +269,7 @@ const SevFivVideos = () => {
             initialValues={{
               title: "",
               link: "",
+              courseCategory: "", // initial value for the category
             }}
           >
             <Form.Item
@@ -252,6 +290,17 @@ const SevFivVideos = () => {
               ]}
             >
               <Input placeholder="Enter video link" />
+            </Form.Item>
+
+            <Form.Item
+              name="courseCategory"
+              label="Course Category"
+              rules={[{ required: true, message: "Please select a category!" }]}
+            >
+              <Select placeholder="Select course category">
+                <Select.Option value="Amazon">Amazon</Select.Option>
+                <Select.Option value="Website">Website</Select.Option>
+              </Select>
             </Form.Item>
 
             <Form.Item>

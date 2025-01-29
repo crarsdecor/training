@@ -77,13 +77,21 @@ const Features = () => {
         {/* Right Side */}
         <div className="w-full md:w-2/3 bg-white p-4" data-aos="fade-up">
           {selectedVideo ? (
-            <iframe
-              sandbox="allow-same-origin allow-scripts"
+            // <iframe
+            //   sandbox="allow-same-origin allow-scripts"
+            //   src={selectedVideo}
+            //   allowFullScreen
+            //   className="w-full h-[35vh] sm:h-[70vh] mt-6 sm:mt-8 lg:mt-4"
+            //   allow="autoplay; encrypted-media"
+            // />
+            <video
               src={selectedVideo}
-              allowFullScreen
-              className="w-full h-[35vh] sm:h-[70vh] mt-6 sm:mt-8 lg:mt-4"
-              allow="autoplay; encrypted-media"
-            />
+              className="w-full h-398"
+              autoPlay
+              loop
+              muted
+              controls
+            ></video>
           ) : (
             <p className="text-gray-500">Select a topic to play the video.</p>
           )}

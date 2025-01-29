@@ -33,6 +33,8 @@ const AmazonCourse = () => {
   const [selectedVideo, setSelectedVideo] = useState(null); // State for selected video
   const [viewMode, setViewMode] = useState(false); // State for changing layout
   const [completedVideos, setCompletedVideos] = useState([]); // To track completed videos
+  const [extra, setExtra] = useState([]);
+  console.log(extra);
   const [reviewData, setReviewData] = useState({
     rating: 0,
     userName: localStorage.getItem("name"),
@@ -136,6 +138,31 @@ const AmazonCourse = () => {
       );
 
       setIntermediate(response.data.videos || []);
+    } catch (error) {
+      message.error("Failed to fetch videos. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const fetchExtrasVideos = async () => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        message.error("Authentication token missing.");
+        return;
+      }
+
+      const response = await axios.get(
+        `${backendUrl}/user/getAmazonCourseExtrasVideos`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setExtra(response.data.videos || []);
     } catch (error) {
       message.error("Failed to fetch videos. Please try again.");
     } finally {
@@ -267,6 +294,7 @@ const AmazonCourse = () => {
   useEffect(() => {
     fetchAmazonVideo();
     fetchAdvanceVideos();
+    fetchExtrasVideos();
     fetchIntermediateVideos();
     fetchBegginerVideos();
     fetchAmazon();
@@ -439,6 +467,32 @@ const AmazonCourse = () => {
                   </Card>
                 ))}
               </Panel>
+              <Panel header="Extras Videos" key="3">
+                {extra.map((video) => (
+                  <Card
+                    key={video._id}
+                    className=""
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleSelectVideo(video)}
+                  >
+                    <Row align="middle">
+                      <Col span={20}>
+                        <Text>
+                          {video.title}{" "}
+                          {isVideoCompleted(video) && (
+                            <span style={{ color: "green", marginLeft: "8px" }}>
+                              ✔️
+                            </span>
+                          )}
+                        </Text>
+                      </Col>
+                      <Col span={4}>
+                        <Button type="primary">Play</Button>
+                      </Col>
+                    </Row>
+                  </Card>
+                ))}
+              </Panel>
             </Collapse>
           </div>
         </div>
@@ -512,6 +566,33 @@ const AmazonCourse = () => {
 
               <Panel header="Advanced Videos" key="3">
                 {advance.map((video, index) => (
+                  <Card
+                    key={video._id}
+                    style={{
+                      cursor: "pointer", // Pointer cursor on hover
+                      height: "50px", // Fixed height of 50px
+                      padding: "0 16px", // Horizontal padding, no vertical padding
+                      display: "flex", // Flexbox for layout
+                      alignItems: "center", // Vertically center content
+                    }}
+                    onClick={() => handleSelectVideo(video)}
+                  >
+                    <Text>
+                      <span style={{ marginRight: "8px" }}>
+                        {index + 1}. {/* Serial number */}
+                      </span>
+                      {video.title}{" "}
+                      {isVideoCompleted(video) && (
+                        <span style={{ color: "green", marginLeft: "8px" }}>
+                          ✔️
+                        </span>
+                      )}
+                    </Text>
+                  </Card>
+                ))}
+              </Panel>
+              <Panel header="Extras Videos" key="3">
+                {extra.map((video, index) => (
                   <Card
                     key={video._id}
                     style={{

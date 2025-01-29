@@ -188,6 +188,7 @@ const Videos = () => {
     {
       title: "Course Type",
       dataIndex: "courseType",
+      className: "font-semibold",
       key: "courseType",
     },
     {
@@ -235,9 +236,12 @@ const Videos = () => {
   return (
     <AdminLayout>
       <div className="p-4">
-        <div className="w-full mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
+        <div className=" flex justify-between w-full mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
           <h1 className="text-2xl pt-4 font-bold text-white">
             All Course Videos
+          </h1>
+          <h1 className="text-2xl pt-4 font-bold text-white">
+            Total: {filteredVideos.length}
           </h1>
         </div>
         <div className="flex gap-4 items-center mb-4">
@@ -265,13 +269,14 @@ const Videos = () => {
             <Select.Option value="Beginner">Beginner</Select.Option>
             <Select.Option value="Intermediate">Intermediate</Select.Option>
             <Select.Option value="Advanced">Advanced</Select.Option>
+            <Select.Option value="Extras">Extras</Select.Option>
           </Select>
           <Button
             type="primary"
             onClick={() => showModal()}
             className="bg-gradient-to-r from-blue-800 to-blue-400 text-white"
           >
-            Add Video
+            Add New Video
           </Button>
         </div>
 
@@ -327,6 +332,7 @@ const Videos = () => {
                 <Select.Option value="Beginner">Beginner</Select.Option>
                 <Select.Option value="Intermediate">Intermediate</Select.Option>
                 <Select.Option value="Advanced">Advanced</Select.Option>
+                <Select.Option value="Extras">Extras</Select.Option>
               </Select>
             </Form.Item>
 

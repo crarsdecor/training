@@ -2,7 +2,7 @@ const SevFivVideo = require("../model/SevFivModal"); // Ensure this path points 
 
 module.exports = async (req, res) => {
   try {
-    const { title, link } = req.body;
+    const { title, link, courseCategory } = req.body;
 
     // Ensure the fields are provided
     if (!title || !link) {
@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
     const newVideo = new SevFivVideo({
       title,
       link,
+      courseCategory,
     });
 
     // Save the new video to the database

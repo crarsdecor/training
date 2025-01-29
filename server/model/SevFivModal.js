@@ -7,6 +7,10 @@ const sevFivSchema = new Schema(
       type: String,
       required: true,
     },
+    courseCategory: {
+      type: String,
+      require: true,
+    },
     link: {
       type: String,
       required: true,
