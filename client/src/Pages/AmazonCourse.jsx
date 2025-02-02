@@ -596,11 +596,11 @@ const AmazonCourse = () => {
                   <Card
                     key={video._id}
                     style={{
-                      cursor: "pointer", // Pointer cursor on hover
-                      height: "50px", // Fixed height of 50px
-                      padding: "0 16px", // Horizontal padding, no vertical padding
-                      display: "flex", // Flexbox for layout
-                      alignItems: "center", // Vertically center content
+                      cursor: "pointer", 
+                      height: "50px",
+                      padding: "0 16px",
+                      display: "flex",
+                      alignItems: "center",
                     }}
                     onClick={() => handleSelectVideo(video)}
                   >

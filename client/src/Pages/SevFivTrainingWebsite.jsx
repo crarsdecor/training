@@ -6,7 +6,7 @@ import "tailwindcss/tailwind.css";
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-const SevFivTraining = () => {
+const SevFivTrainingWebsite = () => {
   const [videos, setVideos] = useState([]);
   console.log(videos);
   const [currentVideo, setCurrentVideo] = useState(null);
@@ -29,7 +29,7 @@ const SevFivTraining = () => {
 
       setVideos(
         response.data.videos.filter(
-          (video) => video.courseCategory === "Amazon"
+          (video) => video.courseCategory === "Website"
         ) || []
       );
     } catch (error) {
@@ -134,4 +134,4 @@ const SevFivTraining = () => {
   );
 };
 
-export default SevFivTraining;
+export default SevFivTrainingWebsite;

@@ -29,6 +29,8 @@ import Banner from "./Pages/Banner";
 import ProductImage from "./Pages/ProductImage";
 import ProductVideos from "./Pages/ProductVideos";
 import Manufacturing from "./Pages/Manufacturing";
+import AdminSocialMedia from "./Pages/AdminSocialMedia";
+import UserSevFivPlayer from "./Pages/UserSevFivPlayer";
 function App() {
   return (
     <>
@@ -48,7 +50,11 @@ function App() {
             <Route path="/website" exact element={<WebsiteCourse />} />
             <Route path="/ebook" exact element={<EBook />} />
             <Route path="/regular-update" exact element={<RegularUpdate />} />
-            <Route path="/75daystraining" exact element={<SevFivTraining />} />
+            <Route
+              path="/75daystraining"
+              exact
+              element={<UserSevFivPlayer />}
+            />
             <Route path="/live-training" exact element={<LiveTraining />} />
             <Route path="/themes" exact element={<Themes />} />
             <Route path="/banner" exact element={<Banner />} />
@@ -69,6 +75,7 @@ function App() {
             <Route path="/75videos" element={<SevFivVideos />} />
             <Route path="/videos" element={<Videos />} />
             <Route path="/livetraining" element={<LiveTraningAdmin />} />
+            <Route path="/social-media" element={<AdminSocialMedia />} />
           </Route>
         </Routes>
       </Router>
