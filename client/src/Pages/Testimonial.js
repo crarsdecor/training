@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Col, Row, Avatar } from "antd";
 import "./TestimonialsSection.css";
-import UserNavbar from "../Components/UserNavbar";
+import AdminLayout from "../Layouts/AdminLayout";
 
 const testimonials = [
   {
@@ -23,8 +23,7 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <>
-    <UserNavbar />
+  <AdminLayout>
     <h1 className="text-3xl mt-24 font-extrabold mb-4 text-center text-blue-500">
       What Our Student Says
     </h1>
@@ -64,7 +63,7 @@ const TestimonialsSection = () => (
         ))}
       </Row>
     </div>
-  </>
+  </AdminLayout>
 );
 
 export default TestimonialsSection;

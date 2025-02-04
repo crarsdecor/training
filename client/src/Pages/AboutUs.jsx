@@ -1,10 +1,9 @@
 import React from "react";
-import UserNavbar from "../Components/UserNavbar";
-import UserLayout from "../Layouts/UserLayout";
+import AdminLayout from "../Layouts/AdminLayout";
 
 const AboutUs = () => {
   return (
-    <UserLayout>
+    <AdminLayout>
       <div className="p-4">
         <h1 className="text-xl font-bold mb-4">Who Are We</h1>
         <p className="mb-4">
@@ -26,7 +25,7 @@ const AboutUs = () => {
           Jaipur, Jaipur, Rajasthan, 302017
         </p>
       </div>
-    </UserLayout>
+    </AdminLayout>
   );
 };
 

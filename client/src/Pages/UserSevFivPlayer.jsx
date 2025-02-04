@@ -16,8 +16,12 @@ const UserSevFivPlayer = () => {
         onChange={(e) => setSelectedOption(e.target.value)}
         value={selectedOption}
       >
-        {AmazonId && <Radio.Button value="amazon">Amazon</Radio.Button>}
-        {WebsiteId && <Radio.Button value="website">Website</Radio.Button>}
+        {AmazonId !== "undefined" && (
+          <Radio.Button value="amazon">Amazon</Radio.Button>
+        )}
+        {WebsiteId !== "undefined" && (
+          <Radio.Button value="website">Website</Radio.Button>
+        )}
       </Radio.Group>
 
       <div>

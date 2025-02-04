@@ -87,8 +87,11 @@ const Courses = () => {
   return (
     <AdminLayout>
       <div className="bg-gray-100 min-h-screen p-4">
-        <div className="w-full mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
+        <div className="w-full flex justify-between mb-8 pb-3 px-4 bg-gradient-to-r from-blue-800 to-blue-300 shadow-lg rounded-lg">
           <h1 className="text-2xl pt-4 font-bold text-white">All Courses</h1>
+          <h1 className="text-2xl pt-4 font-bold text-white">
+            Total : {courses.length}
+          </h1>
         </div>
         {/* Create Course Button */}
         <Button
