@@ -145,6 +145,9 @@ const Upcoming = () => {
         <h2 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-blue-500 bg-clip-text text-transparent">
           Upcoming Trainings
         </h2>{" "}
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-blue-500 bg-clip-text text-transparent">
+          Total: {trainings.length}
+        </h2>{" "}
         <Button type="primary" onClick={showModal}>
           Set New Training
         </Button>

@@ -127,19 +127,19 @@ const AdminSocialMedia = () => {
       dataIndex: "type",
       key: "type",
     },
-    {
-      title: "Theme Link",
-      dataIndex: "themeLink",
-      key: "themeLink",
-      render: (text) =>
-        text ? (
-          <a href={text} target="_blank" rel="noopener noreferrer">
-            {text}
-          </a>
-        ) : (
-          "N/A"
-        ),
-    },
+    // {
+    //   title: "Theme Link",
+    //   dataIndex: "themeLink",
+    //   key: "themeLink",
+    //   render: (text) =>
+    //     text ? (
+    //       <a href={text} target="_blank" rel="noopener noreferrer">
+    //         {text}
+    //       </a>
+    //     ) : (
+    //       "N/A"
+    //     ),
+    // },
     {
       title: "Action",
       key: "action",
