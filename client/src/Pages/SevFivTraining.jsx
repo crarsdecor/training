@@ -61,15 +61,32 @@ const SevFivTraining = () => {
   ];
 
   return (
-    <UserLayout>
-      <div className="flex flex-col md:flex-row h-screen">
-        {/* Sidebar or Drawer for video list */}
-        <div
-          className={`${
-            drawerVisible ? "" : "hidden"
-          } md:block md:w-1/4 bg-gray-100 overflow-auto`}
-        >
-          <h2 className="text-lg font-semibold mb-4">Video List</h2>
+    <div className="flex flex-col md:flex-row h-screen">
+      {/* Sidebar or Drawer for video list */}
+      <div
+        className={`${
+          drawerVisible ? "" : "hidden"
+        } md:block md:w-1/4 bg-gray-100 overflow-auto`}
+      >
+        <h2 className="text-lg font-semibold mb-4">Video List</h2>
+        <Table
+          dataSource={videos.map((video, index) => ({
+            ...video,
+            key: index,
+          }))}
+          columns={columns}
+        />
+      </div>
+
+      {/* Drawer for mobile view */}
+      <Drawer
+        title="Video List"
+        placement="left"
+        onClose={() => setDrawerVisible(false)}
+        visible={drawerVisible}
+        bodyStyle={{ padding: 0 }}
+      >
+        <div className="p-4">
           <Table
             dataSource={videos.map((video, index) => ({
               ...video,
@@ -78,59 +95,40 @@ const SevFivTraining = () => {
             columns={columns}
           />
         </div>
+      </Drawer>
 
-        {/* Drawer for mobile view */}
-        <Drawer
-          title="Video List"
-          placement="left"
-          onClose={() => setDrawerVisible(false)}
-          visible={drawerVisible}
-          bodyStyle={{ padding: 0 }}
-        >
-          <div className="p-4">
-            <Table
-              dataSource={videos.map((video, index) => ({
-                ...video,
-                key: index,
-              }))}
-              columns={columns}
-            />
-          </div>
-        </Drawer>
-
-        {/* Main Video Player */}
-        <div className="flex-grow bg-gray-200 flex items-center justify-center md:w-3/4">
-          {currentVideo ? (
-            // <iframe
-            //   src={currentVideo}
-            //   title="Video Player"
-            //   className="w-full h-full"
-            //   allow="fullscreen"
-            // ></iframe>
-            <iframe
-              sandbox="allow-same-origin allow-scripts"
-              src={currentVideo}
-              frameBorder="0"
-              title={currentVideo.title}
-              allowFullScreen
-              className="w-full h-full"
-              allow="autoplay; encrypted-media"
-            />
-          ) : (
-            <p className="text-gray-500">Select a video to play.</p>
-          )}
-        </div>
-
-        {/* Mobile menu button */}
-        <Button
-          className="fixed top-32 left-4 md:hidden z-50"
-          type="primary"
-          onClick={() => setDrawerVisible(!drawerVisible)}
-        >
-          Menu
-        </Button>
+      {/* Main Video Player */}
+      <div className="flex-grow bg-gray-200 flex items-center justify-center md:w-3/4">
+        {currentVideo ? (
+          // <iframe
+          //   src={currentVideo}
+          //   title="Video Player"
+          //   className="w-full h-full"
+          //   allow="fullscreen"
+          // ></iframe>
+          <iframe
+            sandbox="allow-same-origin allow-scripts"
+            src={currentVideo}
+            frameBorder="0"
+            title={currentVideo.title}
+            allowFullScreen
+            className="w-full h-full"
+            allow="autoplay; encrypted-media"
+          />
+        ) : (
+          <p className="text-gray-500">Select a video to play.</p>
+        )}
       </div>
-    </UserLayout>
+
+      {/* Mobile menu button */}
+      <Button
+        className="fixed top-32 left-4 md:hidden z-50"
+        type="primary"
+        onClick={() => setDrawerVisible(!drawerVisible)}
+      >
+        Menu
+      </Button>
+    </div>
   );
 };
 
