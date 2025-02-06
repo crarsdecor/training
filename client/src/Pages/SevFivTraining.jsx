@@ -61,7 +61,7 @@ const SevFivTraining = () => {
   ];
 
   return (
-    <div className="flex flex-col md:flex-row h-screen">
+    <div className="flex flex-col md:flex-row h-[85vh]">
       {/* Sidebar or Drawer for video list */}
       <div
         className={`${

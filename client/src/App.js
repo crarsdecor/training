@@ -31,6 +31,7 @@ import ProductVideos from "./Pages/ProductVideos";
 import Manufacturing from "./Pages/Manufacturing";
 import AdminSocialMedia from "./Pages/AdminSocialMedia";
 import UserSevFivPlayer from "./Pages/UserSevFivPlayer";
+import ExploreMore from "./Components/ExploreMore";
 function App() {
   return (
     <>
@@ -76,6 +77,7 @@ function App() {
             <Route path="/videos" element={<Videos />} />
             <Route path="/livetraining" element={<LiveTraningAdmin />} />
             <Route path="/social-media" element={<AdminSocialMedia />} />
+            <Route path="/explore-more" element={<ExploreMore />} />
           </Route>
         </Routes>
       </Router>

@@ -3,6 +3,7 @@ import Navbar from "../Components/Navbar";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import EventIcon from "@mui/icons-material/Event";
+import ExploreIcon from "@mui/icons-material/Explore";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -35,6 +36,7 @@ const AdminLayout = ({ children }) => {
     else if (path.includes("/videos")) setActiveLink("videos");
     else if (path.includes("/livetraining")) setActiveLink("live-training");
     else if (path.includes("/social-medial")) setActiveLink("social-media");
+    else if (path.includes("/explore-more")) setActiveLink("explore-more");
   }, [location]); // Run this effect whenever the location changes
 
   return (
@@ -73,6 +75,11 @@ const AdminLayout = ({ children }) => {
               name: "Social-Media",
               icon: <EventIcon />,
               path: "/social-media",
+            },
+            {
+              name: "Explore-More",
+              icon: <ExploreIcon />,
+              path: "/explore-more",
             },
             {
               name: "Logout",

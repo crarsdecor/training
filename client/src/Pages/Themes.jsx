@@ -3,16 +3,34 @@ import { Card, Spin, message, Modal, Button, Input } from "antd";
 import axios from "axios";
 import UserLayout from "../Layouts/UserLayout";
 import { DownloadOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const Themes = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [data, setData] = useState([]);
+
+  const fetchExploreMore = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/admin/explore-more`);
+
+      // Filter only the items where contentType is "Theme"
+      const filteredData = response.data.filter(
+        (item) => item.contentType === "Theme"
+      );
+
+      setData(filteredData);
+    } catch (error) {
+      message.error("Failed to fetch data");
+    }
+  };
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -28,6 +46,7 @@ const Themes = () => {
 
   useEffect(() => {
     fetchProducts();
+    fetchExploreMore();
   }, []);
 
   // Filter images based on the search query
@@ -50,12 +69,7 @@ const Themes = () => {
   };
 
   const handleDownload = (imageUrl) => {
-    const link = document.createElement("a");
-    link.href = imageUrl;
-    link.download = "downloaded-image.jpg"; // Optionally set this to something dynamic
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open(imageUrl, "_blank");
   };
 
   return (
@@ -104,7 +118,19 @@ const Themes = () => {
             ))}
           </div>
         )}
-
+        <div>
+          <Button
+            type="primary"
+            className="mt-4"
+            onClick={() => {
+              data.forEach((item) => {
+                window.open(item.link, "_blank"); // Opens each link in a new tab
+              });
+            }}
+          >
+            Explore more..
+          </Button>
+        </div>
         {/* Modal for full image view */}
         <Modal
           open={isModalOpen}
@@ -126,10 +152,9 @@ const Themes = () => {
                 <Button
                   type="primary"
                   className="mt-4 flex items-center gap-2"
-                  icon={<DownloadOutlined />}
-                  onClick={() => handleDownload(selectedImage.link)}
+                  onClick={() => handleDownload(selectedImage.themeLink)}
                 >
-                  Download
+                  Preview
                 </Button>
               </>
             )}

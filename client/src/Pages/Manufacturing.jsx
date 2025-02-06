@@ -13,6 +13,22 @@ const Manufacturing = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [data, setData] = useState([]);
+
+  const fetchExploreMore = async () => {
+    try {
+      const response = await axios.get(`${backendUrl}/admin/explore-more`);
+
+      // Filter only the items where contentType is "Theme"
+      const filteredData = response.data.filter(
+        (item) => item.contentType === "Manufacturing"
+      );
+
+      setData(filteredData);
+    } catch (error) {
+      message.error("Failed to fetch data");
+    }
+  };
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -30,6 +46,7 @@ const Manufacturing = () => {
 
   useEffect(() => {
     fetchProducts();
+    fetchExploreMore();
   }, []);
 
   // Filter images based on the search query
@@ -115,6 +132,17 @@ const Manufacturing = () => {
             ))}
           </div>
         )}
+        <Button
+          type="primary"
+          className="mt-4"
+          onClick={() => {
+            data.forEach((item) => {
+              window.open(item.link, "_blank"); // Opens each link in a new tab
+            });
+          }}
+        >
+          Explore more..
+        </Button>
 
         {/* Modal for full image view */}
         <Modal

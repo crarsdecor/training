@@ -98,7 +98,7 @@ const SocialMediaContent = () => {
               className="h-full bg-cover bg-center"
               style={{ backgroundImage: "url('/theme.jpeg')" }}
             >
-              <div className="absolute text-xl bottom-0 left-0 w-full pt-2 pl-2 text-start text-white font-semibold opacity-100">
+              <div className="absolute bottom-0 w-full bg-black text-xl bg-opacity-60 font-semibold text-white text-start p-2">
                 Themes
               </div>
             </div>
@@ -120,7 +120,7 @@ const SocialMediaContent = () => {
               {/* Dark overlay to further reduce background image opacity */}
               <div className="absolute inset-0 bg-black bg-opacity-60"></div>
               {/* Banner text with increased opacity */}
-              <div className="absolute text-xl bottom-0 left-0 w-full pt-2 pl-2 text-start text-white font-semibold opacity-100">
+              <div className="absolute bottom-0 w-full bg-black text-xl bg-opacity-60 font-semibold text-white text-start p-2">
                 Banner
               </div>
             </div>
@@ -137,7 +137,7 @@ const SocialMediaContent = () => {
               className="h-40 bg-cover bg-center"
               style={{ backgroundImage: "url('/productImage.webp')" }}
             >
-              <div className="absolute text-xl bottom-0 left-0 w-full pt-2 pl-2 text-start text-white font-semibold opacity-100">
+              <div className="absolute bottom-0 w-full bg-black text-xl bg-opacity-60 font-semibold text-white text-start p-2">
                 Product Images
               </div>
             </div>
@@ -154,7 +154,7 @@ const SocialMediaContent = () => {
               className="h-40 bg-cover bg-center"
               style={{ backgroundImage: "url('/productVideo.webp')" }}
             >
-              <div className="absolute text-xl bottom-0 left-0 w-full pt-2 pl-2 text-start text-white font-semibold opacity-100">
+              <div className="absolute bottom-0 w-full bg-black text-xl bg-opacity-60 font-semibold text-white text-start p-2">
                 Product Videos
               </div>
             </div>
@@ -173,7 +173,7 @@ const SocialMediaContent = () => {
                 backgroundImage: "url('/manufaturing.jpg')",
               }}
             >
-              <div className="absolute text-xl bottom-0 left-0 w-full pt-2 pl-2 text-start text-white font-semibold opacity-100">
+              <div className="absolute bottom-0 w-full bg-black text-xl bg-opacity-60 font-semibold text-white text-start p-2">
                 Manufacturing
               </div>
             </div>
