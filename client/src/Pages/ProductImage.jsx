@@ -8,6 +8,7 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const ProductImage = () => {
   const [products, setProducts] = useState([]);
+  console.log(products);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,7 +20,6 @@ const ProductImage = () => {
     try {
       const response = await axios.get(`${backendUrl}/admin/explore-more`);
 
-      // Filter only the items where contentType is "Theme"
       const filteredData = response.data.filter(
         (item) => item.contentType === "Image"
       );
@@ -35,7 +35,7 @@ const ProductImage = () => {
     try {
       const response = await axios.get(`${backendUrl}/user/get-all-images`);
       setProducts(response.data.images);
-      setFilteredProducts(response.data.images); // Initially show all products
+      setFilteredProducts(response.data.images);
     } catch (error) {
       message.error("Failed to fetch products");
     }
@@ -47,12 +47,11 @@ const ProductImage = () => {
     fetchExploreMore();
   }, []);
 
-  // Filter images based on the search query
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
     if (query === "") {
-      setFilteredProducts(products); // If search is empty, show all products
+      setFilteredProducts(products);
     } else {
       const filtered = products.filter((product) =>
         product.title.toLowerCase().includes(query)
@@ -69,7 +68,7 @@ const ProductImage = () => {
   const handleDownload = (imageUrl) => {
     const link = document.createElement("a");
     link.href = imageUrl;
-    link.download = "downloaded-image.jpg"; // Optionally set this to something dynamic
+    link.download = "downloaded-image.jpg";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -107,11 +106,15 @@ const ProductImage = () => {
                 className="relative rounded-xl shadow-md overflow-hidden transition-transform transform hover:scale-105 h-full w-full cursor-pointer"
                 onClick={() => handleImageClick(product)}
               >
-                <div className="relative w-full h-[300px]">
-                  <img
-                    alt={product.title}
+                <div className="relative w-full h-[300px] overflow-hidden">
+                  <iframe
                     src={product.link}
-                    className="object-cover w-full h-full"
+                    className="absolute top-0 left-0 w-full h-full"
+                    style={{
+                      transform: "scale(1.7)",
+                      objectFit: "cover",
+                      border: "none",
+                    }}
                   />
                   <div className="absolute bottom-0 w-full bg-black text-xl bg-opacity-60 font-semibold text-white text-start p-2">
                     {product.title}
@@ -126,14 +129,13 @@ const ProductImage = () => {
           className="mt-4"
           onClick={() => {
             data.forEach((item) => {
-              window.open(item.link, "_blank"); // Opens each link in a new tab
+              window.open(item.link, "_blank");
             });
           }}
         >
           Explore more..
         </Button>
 
-        {/* Modal for full image view */}
         <Modal
           open={isModalOpen}
           footer={null}
@@ -143,7 +145,7 @@ const ProductImage = () => {
           <div className="flex flex-col items-center">
             {selectedImage && (
               <>
-                <img
+                <iframe
                   src={selectedImage.link}
                   alt={selectedImage.title}
                   className="w-full h-auto rounded-lg"
