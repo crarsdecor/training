@@ -158,7 +158,7 @@ const UserDash = () => {
   };
 
   const handleAmazonClick = () => {
-    console.log(amazonId);
+    // console.log(amazonId);
     if (amazonId !== "undefined") {
       navigate("/amazon");
     } else {

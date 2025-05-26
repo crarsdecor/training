@@ -75,7 +75,6 @@ const SevFivVideos = () => {
 
   // Handle form submission for adding or editing
   const handleSubmit = async (values) => {
-    console.log(values);
     try {
       const token = localStorage.getItem("token");
       if (!token) {

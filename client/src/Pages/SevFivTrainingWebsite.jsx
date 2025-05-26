@@ -8,7 +8,6 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const SevFivTrainingWebsite = () => {
   const [videos, setVideos] = useState([]);
-  console.log(videos);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [drawerVisible, setDrawerVisible] = useState(false);
 

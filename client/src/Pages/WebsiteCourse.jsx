@@ -274,7 +274,7 @@ const WebsiteCourse = () => {
       message.error("Please provide a rating and a message.");
       return;
     }
-    console.log(reviewData);
+    // console.log(reviewData);
 
     try {
       // Replace with your backend API endpoint

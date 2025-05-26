@@ -34,7 +34,6 @@ const AmazonCourse = () => {
   const [viewMode, setViewMode] = useState(false); // State for changing layout
   const [completedVideos, setCompletedVideos] = useState([]); // To track completed videos
   const [extra, setExtra] = useState([]);
-  console.log(extra);
   const [reviewData, setReviewData] = useState({
     rating: 0,
     userName: localStorage.getItem("name"),
@@ -229,7 +228,6 @@ const AmazonCourse = () => {
       message.error("Please provide a rating and a message.");
       return;
     }
-    console.log(reviewData);
 
     try {
       // Replace with your backend API endpoint
