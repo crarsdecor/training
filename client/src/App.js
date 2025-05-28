@@ -32,13 +32,14 @@ import Manufacturing from "./Pages/Manufacturing";
 import AdminSocialMedia from "./Pages/AdminSocialMedia";
 import UserSevFivPlayer from "./Pages/UserSevFivPlayer";
 import ExploreMore from "./Components/ExploreMore";
+import LoginForm from "./Pages/LoginForm";
 function App() {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/login" exact element={<LogIn />} />
+          <Route path="/login" exact element={<LoginForm />} />
           <Route path="/testimonials" exact element={<Testimonial />} />
           <Route path="/aboutus" exact element={<AboutUs />} />
           <Route path="/artists" exact element={<Artists />} />
