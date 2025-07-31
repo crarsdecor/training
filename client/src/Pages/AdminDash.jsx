@@ -70,7 +70,7 @@ const AdminDash = () => {
       title: "UID",
       dataIndex: "uid",
       key: "uid",
-      render: (text) => <span>{text}</span>,
+      render: (text) => <span>UID{text}</span>,
     },
     {
       title: "Name",
