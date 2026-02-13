@@ -58,7 +58,7 @@ const Navbar = ({ toggleSidebar }) => {
         {/* Logo */}
         <img
           src="/logo2.png"
-          alt="Logo"
+          alt="Logo2"
           className="h-14 w-auto hover:cursor-pointer"
           onClick={handleLogoClick}
         />
