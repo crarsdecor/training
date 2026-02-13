@@ -43,7 +43,7 @@ const LoginForm = () => {
       handleLoginSuccess(res.data);
     } catch (error) {
       messageApi.error(
-        error.response?.data?.error || "OTP verification failed"
+        error.response?.data?.error || "OTP verification failed",
       );
     }
   };
@@ -95,10 +95,7 @@ const LoginForm = () => {
           onFinish={requiresOtp ? onOtpSubmit : onFinish}
         >
           <div className="login-logo">
-            <img
-              src="https://support.saumiccraft.com/wp-content/uploads/2023/05/logo-saumic-new.png"
-              alt="Logo"
-            />
+            <img src="/logo2.png" alt="Logo" />
           </div>
           {!requiresOtp ? (
             <>

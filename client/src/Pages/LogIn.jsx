@@ -34,11 +34,11 @@ const LogIn = () => {
         localStorage.setItem("uid", response.data.uid);
         localStorage.setItem(
           "enrollmentIdAmazon",
-          response.data.enrollmentIdAmazon
+          response.data.enrollmentIdAmazon,
         );
         localStorage.setItem(
           "enrollmentIdWebsite",
-          response.data.enrollmentIdWebsite
+          response.data.enrollmentIdWebsite,
         );
         localStorage.setItem("id", response.data.id);
         localStorage.setItem("role", response.data.role);
@@ -60,7 +60,7 @@ const LogIn = () => {
       if (error.response && error.response.data) {
         message.error(
           error.response.data.message ||
-            "Something went wrong. Please try again."
+            "Something went wrong. Please try again.",
         );
       } else {
         message.error("Something went wrong. Please try again.");
@@ -80,7 +80,7 @@ const LogIn = () => {
       >
         {/* Logo */}
         <div className="text-center mb-6">
-          <img src="/logo2.png" alt="Logo" className="h-14 mx-auto mb-1" />
+          <img src="/logo2.png" alt="Logo2" className="h-14 mx-auto mb-1" />
           <h2
             className="text-3xl font-bold mb-1"
             style={{
